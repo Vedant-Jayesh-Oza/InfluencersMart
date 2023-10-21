@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block content %}
+
+
+<main class="about-us">
+    <div class="banner">
+      <img src="{% static './assets/images/bg-banner.png' %}" alt="" class="img-fluid w-100">
+      <h1 class="text-center">
+        Join Our Platform
+      </h1>
+    </div>
+    <h2 class="text-center mt-5 mb-2  animate__animated animate__flipInX animate__slow	">
+      For Youtubers who want to join our Platform
+    </h2>
+    <p class="text-center mb-3  animate__animated animate__flipInX animate__delay-1s">
+      Fill the form below and we will get in touch asap
+    </p>
+
+    <section class="container mt-5">
+      <div class="row ">
+        <div class="col-md-6 mb-2 ">
+          <form method="POST" action="{% url 'set_youtubers' %}" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <input type="text" name='name' class="form-control" placeholder="Full Name">
+              </div>
+              <div class="form-group col-lg-6">
+                <input type="text" name='price' class="form-control" placeholder="Price in Rupees">
+              </div>
+            </div>
+            <div class="form-row">
+              
+              <div class="form-group col-lg-6">
+                <input type="text" name='city' class="form-control" placeholder="City">
+              </div>
+              <div class="form-group col-lg-6">
+                <input type="text" name='age' class="form-control" placeholder="Age">
+              </div>  
+              <div class="form-group col-lg-6">
+                <input type="text" name='height' class="form-control" placeholder="Height">
+              </div>
+              <div class="form-group col-lg-6">
+                <!-- <input type="text" name='crew' class="form-control" placeholder="Crew Type"> -->
+                <select id="inputState" class="form-control" name='crew'>
+                  <option selected disabled hidden>Crew Type</option>
+                  <option value="solo">solo</option>
+                  <option value="small">small</option>
+                  <option value="large">large</option>                 
+                  
+                </select>
+              </div>  
+              <div class="form-group col-lg-6">
+                <!-- <input type="text" name='camera_type' class="form-control" placeholder="Camera Type"> -->
+                <select id="inputState" class="form-control" name='camera_type'>
+                  <option selected disabled hidden>Camera Type</option>
+                  {% for camera in camera_search%}
+                  <option value="{{camera}}">{{camera}}</option>
+                  {%endfor%}
+                  
+                </select>
+              </div>
+              <div class="form-group col-lg-6">
+                <input type="text" name='subs_count' class="form-control" placeholder="Subscriber Count">
+              </div>  
+              <div class="form-group col-lg-6">
+                <!-- <input type="text" name='category' class="form-control" placeholder="Category"> -->
+                <select class="form-control" name="category">
+                  <option selected disabled hidden>Category</option>
+                  {% for cat in category_search %}
+                  <option value="{{cat}}">{{cat}}</option>
+                  {%endfor%}
+                </select>
+              </div>
+              
+            </div>
+            
+           
+            
+            <div class="form-group pt-2">
+              <textarea class="form-control" rows="3" placeholder="Description" name='description'></textarea>
+            </div>
+           
+            <div class="text-center">
+              
+               <button type="submit" class="btn btn-accent">Register as a Youtuber</button>
+            </div>
+            
+          </form>
+        </div>
+
+        <div class="col-md-4 offset-md-2 d-flex justify-content-center mb-2">
+          <div class="card">
+            <div class="card-body">
+              <div class="mb-4">
+                <h6 class="card-title font-weight-bolder">Phone</h6>
+                <span class="card-text">+91 9898989899</span>
+              </div>
+              <div class="mb-4">
+                <h6 class="card-title font-weight-bolder">Email</h6>
+                <span class="card-text">info@ytubers.com</span>
+              </div>
+              <div class="mb-4">
+                <h6 class="card-title font-weight-bolder">Address</h6>
+                <span class="card-text">12 some street, <br> Some city and State, <br>India </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+
+
+{% endblock %}
